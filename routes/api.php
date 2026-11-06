@@ -1,6 +1,10 @@
+
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\BookController;
 
-Route::apiResource('books', BookController::class);
+// API untuk mengambil informasi user
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});

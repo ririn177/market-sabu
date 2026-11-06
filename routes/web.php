@@ -1,31 +1,21 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\BroadcastController;
 
+// Halaman utama MARKET-SABU
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
-Route::get('/tentang', function () {
-    return view('tentang');
-});
+// Route cetak struk thermal
+Route::get('/print-receipt', [ReceiptController::class, 'print'])
+    ->name('receipt.print');
 
-Route::get('/prodi', function () {
-    return view('prodi');
-});
+// Route cetak struk PDF
+Route::get('/receipt-pdf', [ReceiptController::class, 'pdf']);
 
-Route::get('/dosen', function () {
-    return view('dosen');
-});
-
-Route::get('/kontak', function () {
-    return view('kontak');
-});
-
-Route::get('/visi-misi', function () {
-    return view('visi-misi');
-});
- 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route broadcasting
+Route::get('/broadcast-test', [BroadcastController::class, 'send']);
